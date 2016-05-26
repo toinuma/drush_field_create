@@ -172,7 +172,6 @@ function drush_field_create($bundle) {
   // Iterate over each field spec.
   foreach ($args as $string) {
     list($name, $type, $widget) = explode(',', $string);
-    list($name, $label) = explode(':', $name);
     $info = field_info_field($name);
     if (empty($info)) {
       // Field does not exist already. Create it.
@@ -189,9 +188,6 @@ function drush_field_create($bundle) {
       'entity_type' => $entity_type,
       'bundle' => $bundle,
     );
-    if (!empty($label)) {
-      $instance['label'] = $label;
-    }
     if ($widget) {
       $instance['widget'] = array('type' => $widget);
     }
