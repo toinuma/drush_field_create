@@ -366,7 +366,9 @@ function _drush_field_info_process_cell($data, $metadata) {
  *   An array of brief field specifications.
  */
 function drush_field_create_wizard() {
-  $specs[] = drush_prompt(dt('Field name'));
+  $names[] = drush_prompt(dt('Field name'));
+  $names[] = drush_prompt(dt('Field label'));
+  $specs[] = implode(':', $names);
   module_load_include('inc', 'field_ui', 'field_ui.admin');
   $types = field_ui_field_type_options();
   $field_type = drush_choice($types, dt('Choose a field type'));
